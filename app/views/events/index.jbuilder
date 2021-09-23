@@ -1,1 +1,3 @@
-json.array! @events, partial: 'events/event_short', as: :event
+json.array! @events do |event|
+	json.merge! event.to_builder_short.attributes!
+end

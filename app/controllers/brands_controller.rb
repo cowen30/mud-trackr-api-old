@@ -6,4 +6,8 @@ class BrandsController < ApplicationController
 		@brands = Brand.all.order(id: :asc)
 	end
 
+	def show
+		@brand = Brand.find(params[:id])
+	end
+
 end

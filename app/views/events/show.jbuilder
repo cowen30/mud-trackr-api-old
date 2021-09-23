@@ -1,1 +1,1 @@
-json.partial! 'events/event', event: @event
+json.merge! @event.to_builder.attributes!
