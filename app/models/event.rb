@@ -19,6 +19,7 @@ class Event < ApplicationRecord
 	def to_builder_short
 		Jbuilder.new do |event|
 			event.(self, :id, :name, :address, :city, :state, :country, :date)
+			event.brand brand.to_builder
 		end
 	end
 end
