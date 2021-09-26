@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::API
 
+	before_action :require_login
+
 	private
 
 	def token(user)
