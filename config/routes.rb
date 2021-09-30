@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 	resources :events
 	resources :brands
 	resources :users
+	scope '/participants' do
+		get 'users/:id', to: 'participants#show_users'
+	end
 	
 	post 'login', to: 'login#create'
 end
