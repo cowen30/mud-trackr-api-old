@@ -10,9 +10,9 @@ class Event < ApplicationRecord
 			event.(self, :id, :name, :address, :city, :state, :country, :date)
 			event.brand brand.to_builder
 			event.created_at created_at
-			event.created_by created_by.to_builder
+			event.created_by created_by.to_builder_short
 			event.updated_at updated_at
-			event.updated_by updated_by.to_builder
+			event.updated_by updated_by.to_builder_short
 		end
 	end
 

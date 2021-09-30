@@ -9,7 +9,7 @@ class Brand < ApplicationRecord
 			else
 				brand.logo_path brand.logo_path
 			end
-			brand.updated_by updated_by.to_builder
+			brand.updated_by updated_by.to_builder_short
 		end
 	end
 end

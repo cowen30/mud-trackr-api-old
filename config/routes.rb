@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 	resources :events
 	resources :brands
+	resources :users
 	
 	post 'login', to: 'login#create'
 end
