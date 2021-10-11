@@ -45,7 +45,7 @@ class ParticipantsController < ApplicationController
 	private
 
 	def participant_params
-		params.deep_transform_keys!(&:underscore).require(:participant).permit(:id, :user_id, { event_detail_attributes: %i[event_id event_type_id] }, :participation_day)
+		params.deep_transform_keys!(&:underscore).require(:participant).permit(:id, :user_id, { event_detail_attributes: %i[event_id event_type_id] }, :participation_day, :additional_laps)
 	end
 
 end
