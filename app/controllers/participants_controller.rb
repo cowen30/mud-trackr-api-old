@@ -6,6 +6,12 @@ class ParticipantsController < ApplicationController
 
 	def show_users
 		@participants = Participant.includes(event_detail: %i[event event_type]).where(user_id: params[:id]).order(Arel.sql('events.date DESC'), Arel.sql('participants.participation_day DESC'), Arel.sql('event_types.display_order ASC'))
+		render :show
+	end
+
+	def show_events
+		@participants = Participant.includes([{ event_detail: %i[event event_type] }, :user]).where(event_detail: { event_id: params[:id] }).order(Arel.sql('users.last_name ASC'), Arel.sql('participants.participation_day DESC'), Arel.sql('event_types.display_order ASC'))
+		render :show
 	end
 
 	def create

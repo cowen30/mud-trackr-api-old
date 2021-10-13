@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 	scope '/participants' do
 		get 'users/:id', to: 'participants#show_users'
 		get 'users/:id/legionnaire', to: 'participants#legionnaire_count'
+		get 'events/:id', to: 'participants#show_events'
 	end
 	resources :participants, only: %i[create update destroy]
 	
