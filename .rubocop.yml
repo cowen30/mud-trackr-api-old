@@ -1,16 +1,16 @@
 AllCops:
-	NewCops: enable
+  NewCops: enable
 Layout/EmptyLinesAroundModuleBody:
-	Enabled: false
+  Enabled: false
 Layout/EmptyLinesAroundClassBody:
-	Enabled: false
+  Enabled: false
 Layout/FirstArrayElementIndentation:
-	EnforcedStyle: consistent
+  EnforcedStyle: consistent
 Layout/IndentationStyle:
-	EnforcedStyle: tabs
+  EnforcedStyle: tabs
 Layout/IndentationWidth:
-	Width: 1
+  Width: 1
 Layout/LineLength:
-	Enabled: false
+  Enabled: false
 Style/Documentation:
-	Enabled: false
+  Enabled: false
