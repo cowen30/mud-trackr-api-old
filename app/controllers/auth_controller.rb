@@ -27,7 +27,9 @@ class AuthController < ApplicationController
 		if @user&.authenticate(login_params[:password])
 			render :login, locals: { token: token(@user) }
 		else
-			render json: { errors: ['Invalid username or password'] }, status: :unauthorized
+			render json: {
+				message: 'Invalid username or password'
+			}, status: :unauthorized
 		end
 	end
 
