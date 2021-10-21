@@ -12,5 +12,5 @@ Rails.application.routes.draw do
 	end
 	resources :participants, only: %i[create update destroy]
 	
-	post 'login', to: 'login#create'
+	post 'login', to: 'auth#login'
 end

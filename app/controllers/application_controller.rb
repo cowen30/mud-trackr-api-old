@@ -5,7 +5,7 @@ class ApplicationController < ActionController::API
 	private
 
 	def token(user)
-		payload = { user: user.attributes }
+		payload = { user: user.slice('id', 'first_name', 'last_name') }
 		JWT.encode(payload, hmac_secret, 'HS256')
 	end
 
@@ -29,7 +29,7 @@ class ApplicationController < ActionController::API
 	end
 
 	def require_login
-		render json: { error: 'Unauthorized' }, status: :unauthorized if !client_has_valid_token?
+		render json: { error: 'Unauthorized' }, status: :unauthorized unless client_has_valid_token?
 	end
 
 end
