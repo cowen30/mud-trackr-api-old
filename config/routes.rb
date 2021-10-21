@@ -13,4 +13,5 @@ Rails.application.routes.draw do
 	resources :participants, only: %i[create update destroy]
 	
 	post 'login', to: 'auth#login'
+	post 'create-account', to: 'auth#create'
 end
