@@ -45,6 +45,24 @@ module EmailHelper
 		send_email(to_email, subject, body)
 	end
 
+	def send_verification_email(user)
+		generate_verification_code(user)
+		to_email = user.email
+		subject = 'Verify account'
+		body = "Hello #{user.first_name}!<br/><br/>Please click the link below to verify your email.<br/><br/><a href=\"#{request.base_url}/verify-email?user_id=#{user.id}&verification_code=#{verification_code}\">Verify email</a>"
+		send_email(to_email, subject, body)
+	end
+
+	def send_password_reset_email(user)
+		reset_code = SecureRandom.hex(16)
+		user.reset_code = reset_code
+		user.save
+		to_email = user.email
+		subject = 'Reset Password'
+		body = "Please click the link below to reset your password.<br/><br/><a href=\"#{request.base_url}/reset-password?user_id=#{user.id}&reset_code=#{reset_code}\">Reset Password</a>"
+		send_email(to_email, subject, body)
+	end
+
 	private
 
 	def generate_verification_code(user)

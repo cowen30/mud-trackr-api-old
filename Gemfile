@@ -16,7 +16,9 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'dotenv-rails', groups: [:development]
-gem 'jwt', "~> 2.2"
+gem 'google-apis-gmail_v1'
+gem 'jwt', '~> 2.2'
+gem 'mail', '~> 2.7.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
