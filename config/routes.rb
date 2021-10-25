@@ -11,7 +11,8 @@ Rails.application.routes.draw do
 		get 'events/:id', to: 'participants#show_events'
 	end
 	resources :participants, only: %i[create update destroy]
-	
+
 	post 'login', to: 'auth#login'
 	post 'create-account', to: 'auth#create'
+	post 'verify-account', to: 'auth#verify'
 end
