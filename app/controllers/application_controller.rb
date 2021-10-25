@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+	include ActionController::Helpers
+	helper EmailHelper
 
 	before_action :require_login
 

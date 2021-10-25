@@ -13,6 +13,7 @@ class AuthController < ApplicationController
 			return
 		end
 		if @user.save
+			ApplicationController.helpers.send_welcome_email @user
 			render :create, locals: { token: token(@user) }
 		else
 			puts @user.errors.full_messages
