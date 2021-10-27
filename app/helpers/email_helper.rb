@@ -49,7 +49,7 @@ module EmailHelper
 		generate_verification_code(user)
 		to_email = user.email
 		subject = 'Verify account'
-		body = "Hello #{user.first_name}!<br/><br/>Please click the link below to verify your email.<br/><br/><a href=\"#{request.base_url}/verify-email?user_id=#{user.id}&verification_code=#{verification_code}\">Verify email</a>"
+		body = "Hello #{user.first_name}!<br/><br/>Please click the link below to verify your email.<br/><br/><a href=\"#{ENV['UI_BASE_URL']}/verify-email?user_id=#{user.id}&verification_code=#{verification_code}\">Verify email</a>"
 		send_email(to_email, subject, body)
 	end
 
@@ -59,7 +59,7 @@ module EmailHelper
 		user.save
 		to_email = user.email
 		subject = 'Reset Password'
-		body = "Please click the link below to reset your password.<br/><br/><a href=\"#{request.base_url}/reset-password?user_id=#{user.id}&reset_code=#{reset_code}\">Reset Password</a>"
+		body = "Please click the link below to reset your password.<br/><br/><a href=\"#{ENV['UI_BASE_URL']}/reset-password?userId=#{user.id}&email=#{user.email}&resetCode=#{reset_code}\">Reset Password</a>"
 		send_email(to_email, subject, body)
 	end
 

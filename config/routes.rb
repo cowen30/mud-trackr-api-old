@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 	resources :event_types, path: '/event-types'
 	resources :brands
 	resources :users
+	get '/users/:id/reset', to: 'users#reset'
 	scope '/participants' do
 		get 'users/:id', to: 'participants#show_users'
 		get 'users/:id/legionnaire', to: 'participants#legionnaire_count'
@@ -15,4 +16,6 @@ Rails.application.routes.draw do
 	post 'login', to: 'auth#login'
 	post 'create-account', to: 'auth#create'
 	post 'verify-account', to: 'auth#verify'
+	post 'reset-password', to: 'auth#reset'
+	post 'set-new-password', to: 'auth#new_password'
 end
