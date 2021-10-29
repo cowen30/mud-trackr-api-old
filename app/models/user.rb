@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
 	def to_builder
 		Jbuilder.new do |user|
-			user.(self, :id, :first_name, :last_name, :email, :active)
+			user.(self, :id, :first_name, :last_name, :email, :active, :created_at, :updated_at)
 		end
 	end
 
