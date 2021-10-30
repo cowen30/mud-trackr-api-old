@@ -19,6 +19,10 @@ class ApplicationController < ActionController::API
 		!!current_user_id
 	end
 
+	def current_user
+		User.find(current_user_id)
+	end
+
 	def current_user_id
 		begin
 			token = request.headers['Authorization']
