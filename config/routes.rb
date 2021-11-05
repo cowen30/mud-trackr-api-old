@@ -18,4 +18,5 @@ Rails.application.routes.draw do
 	post 'verify-account', to: 'auth#verify'
 	post 'reset-password', to: 'auth#reset'
 	post 'set-new-password', to: 'auth#new_password'
+	post 'change-password', to: 'auth#change_password'
 end

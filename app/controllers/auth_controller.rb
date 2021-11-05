@@ -85,6 +85,26 @@ class AuthController < ApplicationController
 		end
 	end
 
+	def change_password
+		@user = User.find_by(id: change_password_params[:id])
+		if @user&.authenticate(change_password_params[:old_password])
+			if @user.update(change_password_params.slice(:password, :password_confirmation))
+				render json: {
+					message: 'Success'
+				}, status: :ok
+			else
+				puts @user.errors.full_messages
+				render json: {
+					message: 'An unexpected error has occurred.'
+				}, status: :internal_server_error
+			end
+		else
+			render json: {
+				message: 'User account not found or invalid password'
+			}, status: :bad_request
+		end
+	end
+
 	private
 
 	def user_params
@@ -101,6 +121,10 @@ class AuthController < ApplicationController
 
 	def new_password_params
 		params.deep_transform_keys!(&:underscore).require(:user).permit(:id, :email, :reset_code, :password, :password_confirmation)
+	end
+
+	def change_password_params
+		params.deep_transform_keys!(&:underscore).require(:user).permit(:id, :old_password, :password, :password_confirmation)
 	end
 
 end
