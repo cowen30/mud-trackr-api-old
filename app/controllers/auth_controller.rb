@@ -88,7 +88,14 @@ class AuthController < ApplicationController
 	def change_password
 		@user = User.find_by(id: change_password_params[:id])
 		if @user&.authenticate(change_password_params[:old_password])
-			if @user.update(change_password_params.slice(:password, :password_confirmation))
+			@user.assign_attributes(change_password_params.slice(:password, :password_confirmation))
+			unless @user.valid?
+				render json: {
+					message: @user.errors.objects.first.full_message
+				}, status: :bad_request
+				return
+			end
+			if @user.save
 				render json: {
 					message: 'Success'
 				}, status: :ok
