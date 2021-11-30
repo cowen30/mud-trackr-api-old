@@ -1,5 +1,5 @@
 class EventType < ApplicationRecord
-	belongs_to :brand, :class_name => 'Brand', :foreign_key => 'brand_id'
+	belongs_to :brand, class_name: 'Brand', foreign_key: 'brand_id'
 
 	def to_builder_short
 		Jbuilder.new do |event_type|

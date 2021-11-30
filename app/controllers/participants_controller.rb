@@ -44,7 +44,7 @@ class ParticipantsController < ApplicationController
 	end
 
 	def legionnaire_count
-		@count = Participant.joins(:event_detail).where(user_id: params[:id], event_details: { event_type_id: [1, 3, 4, 5, 6, 7] }).distinct.count
+		@count = Participant.joins(event_detail: :event_type).where(user_id: params[:id], event_type: { legionnaire_eligible: true }).distinct.count
 		render plain: @count
 	end
 
