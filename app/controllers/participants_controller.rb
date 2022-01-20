@@ -4,13 +4,16 @@ class ParticipantsController < ApplicationController
 
 	skip_before_action :require_login, only: %i[show_users]
 
-	def show_users
-		@participants = Participant.includes(event_detail: %i[event event_type]).where(user_id: params[:id]).order(Arel.sql('events.date DESC'), Arel.sql('participants.participation_day DESC'), Arel.sql('event_types.display_order ASC'))
-		render :show
-	end
-
-	def show_events
-		@participants = Participant.includes([{ event_detail: %i[event event_type] }, :user]).where(event_detail: { event_id: params[:id] }).order(Arel.sql('users.last_name ASC'), Arel.sql('participants.participation_day DESC'), Arel.sql('event_types.display_order ASC'))
+	def index
+		params.deep_transform_keys!(&:underscore)
+		@participants = Participant.joins([{ event_detail: [:event, :event_type] }, :user])
+		@participants = @participants.where(event: { brand_id: params[:brand_id] }) if params[:brand_id].present?
+		@participants = @participants.where(event_detail: { event_id: params[:event_id] }) if params[:event_id].present?
+		@participants = @participants.where(event_detail: { event_type_id: params[:event_type_id] }) if params[:event_type_id].present?
+		@participants = @participants.where(user_id: params[:user_id]) if params[:user_id].present?
+		@participants = @participants.where(event: { date: params[:date_start]..}) if params[:date_start].present?
+		@participants = @participants.where(event: { date: ..params[:date_end]}) if params[:date_end].present?
+		@participants.order(Arel.sql('events.date DESC'), Arel.sql('users.last_name ASC'), Arel.sql('participants.participation_day DESC'), Arel.sql('event_types.display_order ASC'))
 		render :show
 	end
 

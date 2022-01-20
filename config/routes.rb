@@ -7,11 +7,9 @@ Rails.application.routes.draw do
 	resources :users
 	get '/users/:id/reset', to: 'users#reset'
 	scope '/participants' do
-		get 'users/:id', to: 'participants#show_users'
 		get 'users/:id/legionnaire', to: 'participants#legionnaire_count'
-		get 'events/:id', to: 'participants#show_events'
 	end
-	resources :participants, only: %i[create update destroy]
+	resources :participants, only: %i[create index update destroy]
 
 	post 'login', to: 'auth#login'
 	post 'create-account', to: 'auth#create'
