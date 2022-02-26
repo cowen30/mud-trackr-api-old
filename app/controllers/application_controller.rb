@@ -25,7 +25,7 @@ class ApplicationController < ActionController::API
 
 	def current_user_id
 		begin
-			token = request.headers['Authorization']
+			token = request.headers['Authorization'].split.last
 			decoded_array = JWT.decode(token, hmac_secret, true, { algorithm: 'HS256' })
 			payload = decoded_array.first
 		rescue
