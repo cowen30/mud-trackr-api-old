@@ -5,7 +5,7 @@ class EventDetail < ApplicationRecord
 
 	def to_builder_short
 		Jbuilder.new do |event_detail|
-			event_detail.(self, :id, :lap_distance, :lap_elevation)
+			event_detail.(self, :id, :lap_distance, :distance_units, :lap_elevation, :elevation_units)
 			event_detail.event event.to_builder_short
 			event_detail.event_type event_type.to_builder_short
 			# event_detail.updated_by updated_by.to_builder_short
