@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 	resources :events
 	resources :event_types, path: '/event-types'
+	resources :event_details, path: '/event-details'
 	resources :brands
 	resources :users
 	get '/users/:id/reset', to: 'users#reset'
